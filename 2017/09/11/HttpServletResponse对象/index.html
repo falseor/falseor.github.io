@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> “HttpServletResponse对象” · sky</title><meta name="description" content="“HttpServletResponse对象” - 席江平"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/sky.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="sky"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/sky.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://soccer.hupu.com" target="_blank" class="nav-list-link">SOCCER</a></li><li class="nav-list-item"><a href="https://github.com/falseor" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">“HttpServletResponse对象”</h1><div class="post-info">Sep 11, 2017</div><div class="post-content"><h1 id="HttpServletResponse对象"><a href="#HttpServletResponse对象" class="headerlink" title="HttpServletResponse对象"></a>HttpServletResponse对象</h1><p><strong>HttpServletResponse对象代表服务器的响应。这个对象中封装了向客户端发送数据、发送响应头，发送响应状态码的方法。查看HttpServletResponse的API，可以看到这些相关的方法</strong></p>
+<p>服务器向客户端响应数据的两种方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">1. getOutputstream()</div><div class="line">2. getWriter()</div></pre></td></tr></table></figure>
+<hr>
+<p>客户端请求数据与服务端响应数据如果相互格式不对，则会出现406错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(value = &quot;/produces&quot;, produces = &quot;application/json&quot;)：</div></pre></td></tr></table></figure>
+<p><strong>表示将功能处理方法将生产json格式的数据，此时根据请求头中的Accept进行匹配，如请求头“Accept:application/json”时即可匹配;</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(value = &quot;/produces&quot;, produces = &quot;application/xml&quot;)：</div></pre></td></tr></table></figure></p>
+<p><strong>表示将功能处理方法将生产xml格式的数据，此时根据请求头中的Accept进行匹配，如请求头“Accept:application/xml”时即可匹配。</strong></p>
+<p><strong>前端代码示例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">    dataType:&quot;json&quot;</div><div class="line">    type: &quot;post&quot;,</div><div class="line">    success: function (data) &#123;</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="dataType"><a href="#dataType" class="headerlink" title="dataType"></a>dataType</h3><blockquote>
+<p>  类型： String </p>
+</blockquote>
+<p>  预期服务器返回的数据类型。如果不指定，jQuery 将自动根据 HTTP 包 MIME 信息来智能判断，比如 XML MIME 类型就被识别为 XML。在 1.4 中，JSON 就会生成一个 JavaScript 对象，而 script 则会执行这个脚本。随后服务器端返回的数据会根据这个值解析后，传递给回调函数。可用值:</p>
+<ul>
+<li>“xml”: 返回 XML 文档，可用 jQuery 处理。</li>
+<li>“html”: 返回纯文本 HTML 信息；包含的 script 标签会在插入 dom 时执行。</li>
+<li>“script”: 返回纯文本 JavaScript 代码。不会自动缓存结果。除非设置了 “cache” 参数。注意：在远程请求时(不在同一个域下)，所有 POST 请求都将转为 GET 请求。（因为将使用 DOM 的 script标签来加载）</li>
+<li>“json”: 返回 JSON 数据 。</li>
+<li>“jsonp”: JSONP 格式。使用 JSONP 形式调用函数时，如 “myurl?callback=?” jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。</li>
+<li>“text”: 返回纯文本字符串</li>
+</ul>
+<p><strong>还可以自定义 ==Accept== 使用具体参考下面文</strong>章</p>
+<h3 id="jQuery-ajax-如何设置-Headers-中的-Accept"><a href="#jQuery-ajax-如何设置-Headers-中的-Accept" class="headerlink" title="jQuery.ajax() 如何设置 Headers 中的 Accept"></a><a href="http://www.cnblogs.com/xwgli/p/4457971.html" target="_blank" rel="external">jQuery.ajax() 如何设置 Headers 中的 Accept</a></h3></div></article></div></main><footer><div class="paginator"><a href="/2017/09/11/spring自定义标签/" class="prev">PREV</a><a href="/2017/09/11/SprinMVC接受参数以及处理流程/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'seansun';
+var disqus_identifier = '2017/09/11/HttpServletResponse对象/';
+var disqus_title = '“HttpServletResponse对象”';
+var disqus_url = 'http://yoursite.com/2017/09/11/HttpServletResponse对象/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//seansun.disqus.com/count.js" async></script><div class="copyright"><p>© 2015 - 2017 <a href="http://yoursite.com">席江平</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
